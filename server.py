@@ -4,6 +4,9 @@ import rpyc
 import sympy
 from rpyc.utils.server import ThreadedServer
 
+# By Marcos André Santos Junior, 24 September 2023.
+# https://github.com/krzgvfs/servidor-rpc
+
 """
 Guia de uso:
 

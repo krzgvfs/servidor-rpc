@@ -1,7 +1,6 @@
 import urllib
 import rpyc
 
-
 req = rpyc.connect("localhost", 18812)
 try:
     opc = int(input("1 - Calcular IMC\n2 - Equação de Segundo Grau\n3 - Palíndromo\nOpção: "))
