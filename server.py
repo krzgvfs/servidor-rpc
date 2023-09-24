@@ -5,7 +5,8 @@ from rpyc.utils.server import ThreadedServer
 
 
 class MyApps(rpyc.Service):
-    def exposed_imc(self, idade, altura, peso):
+    @staticmethod
+    def exposed_imc(idade, altura, peso):
         print("Requisição: IMC")
         imc = peso / (pow(altura, 2))
 
@@ -24,7 +25,8 @@ class MyApps(rpyc.Service):
 
         return msg
 
-    def exposed_eq2grau(self, a, b, c):
+    @staticmethod
+    def exposed_eq2grau(a, b, c):
         # ax² + bx + c
         print("Requisição: Equação de 2° Grau")
         if a != 0:
@@ -50,8 +52,9 @@ class MyApps(rpyc.Service):
                 # Não possui soluções reais, mas duas soluções complexas conjugadas, uma para x1 e x2.
                 elif delta < 0:
                     print("Delta < 0")
-                    x1 = (-b + cmath.sqrt(delta)) / (2*a)
-                    x2 = (-b - cmath.sqrt(delta)) / (2*a)
+                    # A lib cmath trabalha com números complexos.
+                    x1 = (-b + cmath.sqrt(delta)) / (2 * a)
+                    x2 = (-b - cmath.sqrt(delta)) / (2 * a)
                     msg = f"\nEquação: {a}x²{b}x{c}=0\nResultado: \nx1 = {x1:.2f}  \nx2 = {x2:.2f}"
                     return msg
         else:
@@ -59,7 +62,8 @@ class MyApps(rpyc.Service):
                    "Informe uma Equação de 2° Grau valida.")
             return msg
 
-    def exposed_palindromo(self, palavra):
+    @staticmethod
+    def exposed_palindromo(palavra):
         print("Requisição: Palíndromo")
         if palavra.lower() == palavra.lower()[::-1]:
             msg = "é um Palíndromo!\n"
